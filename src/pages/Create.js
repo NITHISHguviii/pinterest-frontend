@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import axiosInstance from '../AxiosInstance';
-import toast, { Toaster } from 'react-hot-toast';
-import { storage } from '../firebase';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import axiosInstance from "../AxiosInstance";
+import toast, { Toaster } from "react-hot-toast";
+import { storage } from "../firebase";
 
 function Create() {
   const [formData, setFormData] = useState({
-    url: '',
-    user: '',
-    type: '',
-    title: '', // Added title to the form data
+    url: "",
+    user: "",
+    type: "",
+    title: "", // Added title to the form data
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -59,13 +60,13 @@ function Create() {
     }));
 
     try {
-      const res = await axiosInstance.post('/image/upload', {
+      const res = await axiosInstance.post("/image/upload", {
         ...formData,
         url: imageUrl,
       });
       if (res.data.message === "image uploaded") {
         toast.success(res.data.message);
-        setTimeout(() => navigate('/'), 3000);
+        setTimeout(() => navigate("/"), 3000);
       } else {
         toast.error(res.data.message);
       }
@@ -78,11 +79,19 @@ function Create() {
     <div className="flex justify-center items-center h-[400px] bg-gray-100">
       <Toaster />
       {formData.user ? (
-        <form className="bg-white p-6 rounded shadow-md w-full max-w-sm" onSubmit={handleSubmit}>
+        <form
+          className="bg-white p-6 rounded shadow-md w-full max-w-sm"
+          onSubmit={handleSubmit}
+        >
           <h2 className="text-2xl font-bold mb-4">Create Image</h2>
 
           <div className="mb-4">
-            <label htmlFor="url" className="block text-gray-700 font-medium mb-2">Image</label>
+            <label
+              htmlFor="url"
+              className="block text-gray-700 font-medium mb-2"
+            >
+              Image
+            </label>
             <input
               type="file"
               id="url"
@@ -95,7 +104,12 @@ function Create() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="title" className="block text-gray-700 font-medium mb-2">Title</label>
+            <label
+              htmlFor="title"
+              className="block text-gray-700 font-medium mb-2"
+            >
+              Title
+            </label>
             <input
               type="text"
               id="title"
@@ -108,7 +122,12 @@ function Create() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="type" className="block text-gray-700 font-medium mb-2">Type</label>
+            <label
+              htmlFor="type"
+              className="block text-gray-700 font-medium mb-2"
+            >
+              Type
+            </label>
             <select
               id="type"
               name="type"
@@ -117,7 +136,9 @@ function Create() {
               className="w-full p-2 border border-gray-300 rounded"
               required
             >
-              <option value="" disabled>Select type</option>
+              <option value="" disabled>
+                Select type
+              </option>
               <option value="default">Default</option>
               <option value="entertainment">Entertainment</option>
               <option value="education">Education</option>
@@ -129,7 +150,12 @@ function Create() {
             </select>
           </div>
 
-          <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Submit</button>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          >
+            Submit
+          </button>
         </form>
       ) : (
         <h1>Must be logged in</h1>

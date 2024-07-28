@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../AxiosInstance";
