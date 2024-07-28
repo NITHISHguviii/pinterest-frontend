@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import Icon from "../images/pinterest_PNG63.png";
 import Search from "../images/image.png";
